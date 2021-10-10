@@ -2,6 +2,7 @@ package com.parkit.parkingsystem.service;
 
 import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.model.Ticket;
+import java.text.DecimalFormat;
 
 public class FareCalculatorService {
 
@@ -12,21 +13,32 @@ public class FareCalculatorService {
 
         double inHour = ticket.getInTime().getTime();
         double outHour = ticket.getOutTime().getTime();
-        final int oneHourInMilliseconds = 3600000;
+        final int  oneHourInMilliseconds = 3600000;
+
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
-        double duration = (outHour - inHour)/oneHourInMilliseconds;
+        double duration = (outHour - inHour) / oneHourInMilliseconds;
 
-        switch (ticket.getParkingSpot().getParkingType()){
-            case CAR: {
-                ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
-                break;
+        if (duration <= 0.5) {
+            /* duration = (outHour-inHour)/3600000
+                        = 30minutes/3600000
+                        = 1800000 milliseconds/3600000 = 0.5     */
+            ticket.setPrice(0);
+        }
+
+        else {
+            switch (ticket.getParkingSpot().getParkingType()) {
+                case CAR: {
+                    ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
+                    break;
+                }
+                case BIKE: {
+                    ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
+                    break;
+                }
+                default:
+                    throw new IllegalArgumentException("Unkown Parking Type");
             }
-            case BIKE: {
-                ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
-                break;
-            }
-            default: throw new IllegalArgumentException("Unkown Parking Type");
         }
     }
 }
