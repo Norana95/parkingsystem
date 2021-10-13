@@ -130,7 +130,7 @@ public class FareCalculatorServiceTest {
     @Test
     public void fareCalculatorServiceFree30MinutesParkingTime() {
         Date inTime = new Date();
-        inTime.setTime((System.currentTimeMillis()) - (30 * 60 * 1000));
+        inTime.setTime((System.currentTimeMillis()) - (30 * 60 * 1000));//30 minutes parking time should give free parking service
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
         ticket.setInTime(inTime);
@@ -143,7 +143,7 @@ public class FareCalculatorServiceTest {
     @Test
     public void fareCalculatorServiceWithReduction() {
         Date inTime = new Date();
-        inTime.setTime((System.currentTimeMillis()) - (60 * 60 * 1000));
+        inTime.setTime((System.currentTimeMillis()) - (60 * 60 * 1000));//1 hour parking time should give 1 hour * parking fare per hour - (parking fare per hour * 5/100)
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
         ticket.setInTime(inTime);

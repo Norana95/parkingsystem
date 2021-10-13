@@ -10,7 +10,7 @@ public class Ticket {
     private double price;
     private Date inTime;
     private Date outTime;
-    private boolean isRecurrent ;
+    private boolean isRecurrent;
 
     public int getId() {
         return id;

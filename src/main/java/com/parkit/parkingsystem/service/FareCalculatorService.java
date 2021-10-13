@@ -16,16 +16,14 @@ public class FareCalculatorService {
 
 
         //TODO: Some tests are failing here. Need to check if this logic is correct
-        double duration = (outHour - inHour) / oneHourInMilliseconds; // pour avoir la durée en heure
+        double duration = (outHour - inHour) / oneHourInMilliseconds; // the duration in hours
 
         if (duration <= 0.5) {
             /* duration = (outHour-inHour)/3600000
                         = 30minutes/3600000
                         = 1800000 milliseconds/3600000 = 0.5     */
             ticket.setPrice(0);
-        }
-
-        else if (ticket.isRecurrent() && duration > 0.5) {
+        } else if (ticket.isRecurrent() && duration > 0.5) {
 
             switch (ticket.getParkingSpot().getParkingType()) {
                 case CAR: {

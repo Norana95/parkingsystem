@@ -35,15 +35,15 @@ public class ParkingService {
                 parkingSpot.setAvailable(false);
                 parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark it's availability as false
                 if (ticketDAO.getTicket(vehicleRegNumber) != null) {
-                    System.out.println("Bienvenue ! En tant qu'utilisateur récurrent de notre parking, vous bénéficierez d'une remise de 5%.");
+                    System.out.println("Welcome back! As a recurring user of our parking lot, you'll benefit from a 5% discount.");
                     Date inTime = new Date();
                     Ticket ticket = new Ticket();
                     ticket.setParkingSpot(parkingSpot);
                     ticket.setVehicleRegNumber(vehicleRegNumber);
                     ticket.setPrice(0);
-                    ticket.setRecurrent(true);
                     ticket.setInTime(inTime);
                     ticket.setOutTime(null);
+                    ticket.setRecurrent(true);// if true the customer benefits from a 5% reduction
                     ticketDAO.saveTicket(ticket);
                     System.out.println("Generated Ticket and saved in DB");
                     System.out.println("Please park your vehicle in spot number:" + parkingSpot.getId());
