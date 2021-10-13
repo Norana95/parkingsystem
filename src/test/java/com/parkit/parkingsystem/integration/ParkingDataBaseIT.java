@@ -1,5 +1,6 @@
 package com.parkit.parkingsystem.integration;
 
+import com.parkit.parkingsystem.FareCalculatorServiceTest;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
 import com.parkit.parkingsystem.dao.TicketDAO;
 import com.parkit.parkingsystem.integration.config.DataBaseTestConfig;
@@ -25,12 +26,13 @@ public class ParkingDataBaseIT {
     private static ParkingSpotDAO parkingSpotDAO;
     private static TicketDAO ticketDAO;
     private static DataBasePrepareService dataBasePrepareService;
+    FareCalculatorServiceTest fareCalculatorServiceTest;
 
     @Mock
     private static InputReaderUtil inputReaderUtil;
 
     @BeforeAll
-    private static void setUp() throws Exception{
+    private static void setUp() {
         parkingSpotDAO = new ParkingSpotDAO();
         parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
         ticketDAO = new TicketDAO();
@@ -46,7 +48,7 @@ public class ParkingDataBaseIT {
     }
 
     @AfterAll
-    private static void tearDown(){
+    private static void tearDown() {
 
     }
 
@@ -55,8 +57,8 @@ public class ParkingDataBaseIT {
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processIncomingVehicle();
         Ticket ticket = ticketDAO.getTicket(inputReaderUtil.readVehicleRegistrationNumber());
-        assertNotNull(ticket, "le ticket ne doit pas etre nul");
-        assertFalse(ticket.getParkingSpot().isAvailable(), "la place de parking est indisponible et est réservée à la voiture n°= ABCDEF");
+        assertNotNull(ticket);
+        assertFalse(ticket.getParkingSpot().isAvailable());
         assertNull(ticket.getOutTime());
         //TODO: check that a ticket is actualy saved in DB and Parking table is updated with availability
     }
@@ -67,9 +69,8 @@ public class ParkingDataBaseIT {
         ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
         parkingService.processExitingVehicle();
         Ticket ticket = ticketDAO.getTicket(inputReaderUtil.readVehicleRegistrationNumber());
-        assertNotNull(ticket.getPrice());
         assertNotNull(ticket.getOutTime());
+        assertNotNull(ticket.getPrice());
         //TODO: check that the fare generated and out time are populated correctly in the database
     }
-
 }
