@@ -4,6 +4,7 @@ import com.parkit.parkingsystem.config.DataBaseConfig;
 import com.parkit.parkingsystem.constants.DBConstants;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.ParkingSpot;
+import lombok.Generated;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,6 +17,7 @@ public class ParkingSpotDAO {
 
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
+    @Generated
     public int getNextAvailableSlot(ParkingType parkingType) {
         Connection con = null;
         int result = -1;
@@ -37,6 +39,7 @@ public class ParkingSpotDAO {
         return result;
     }
 
+    @Generated
     public boolean updateParking(ParkingSpot parkingSpot) {
         //update the availability fo that parking slot
         Connection con = null;

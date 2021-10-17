@@ -5,6 +5,7 @@ import com.parkit.parkingsystem.constants.DBConstants;
 import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.model.ParkingSpot;
 import com.parkit.parkingsystem.model.Ticket;
+import lombok.Generated;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,7 @@ public class TicketDAO {
 
     public DataBaseConfig dataBaseConfig = new DataBaseConfig();
 
+    @Generated
     public boolean saveTicket(Ticket ticket) {
         Connection con = null;
         try {
@@ -41,6 +43,7 @@ public class TicketDAO {
         }
     }
 
+    @Generated
     public Ticket getTicket(String vehicleRegNumber) {
         Connection con = null;
         Ticket ticket = null;
@@ -71,6 +74,7 @@ public class TicketDAO {
         }
     }
 
+    @Generated
     public boolean updateTicket(Ticket ticket) {
         Connection con = null;
         try {

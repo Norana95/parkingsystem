@@ -1,6 +1,7 @@
 package com.parkit.parkingsystem.model;
 
-import java.util.Calendar;
+import lombok.Generated;
+
 import java.util.Date;
 
 public class Ticket {
@@ -12,10 +13,12 @@ public class Ticket {
     private Date outTime;
     private boolean isRecurrent;
 
+    @Generated
     public int getId() {
         return id;
     }
 
+    @Generated
     public void setId(int id) {
         this.id = id;
     }

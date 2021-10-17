@@ -1,6 +1,7 @@
 package com.parkit.parkingsystem.model;
 
 import com.parkit.parkingsystem.constants.ParkingType;
+import lombok.Generated;
 
 public class ParkingSpot {
     private int number;
@@ -13,10 +14,12 @@ public class ParkingSpot {
         this.isAvailable = isAvailable;
     }
 
+    @Generated
     public int getId() {
         return number;
     }
 
+    @Generated
     public void setId(int number) {
         this.number = number;
     }
@@ -25,10 +28,12 @@ public class ParkingSpot {
         return parkingType;
     }
 
+    @Generated
     public void setParkingType(ParkingType parkingType) {
         this.parkingType = parkingType;
     }
 
+    @Generated
     public boolean isAvailable() {
         return isAvailable;
     }
@@ -37,6 +42,7 @@ public class ParkingSpot {
         isAvailable = available;
     }
 
+    @Generated
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,6 +51,7 @@ public class ParkingSpot {
         return number == that.number;
     }
 
+    @Generated
     @Override
     public int hashCode() {
         return number;
